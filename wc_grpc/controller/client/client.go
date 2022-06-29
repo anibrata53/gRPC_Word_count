@@ -17,7 +17,7 @@ const address = ":50051"
 func main() {
 	//Input
 	fmt.Print("Input String: ")
-	reader := bufio.NewReader(os.Stdin)
+	reader:= bufio.NewReader(os.Stdin)
 	text, err := reader.ReadString('\n')
 	//Error Handling
 	if err != nil {

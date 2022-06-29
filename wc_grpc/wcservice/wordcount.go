@@ -18,12 +18,11 @@ func (s *WcServer) WordCount(ctx context.Context, in *pb.TextRequest) (*pb.WcRes
 
 	log.Println("Recieved: ", in.Text)
 	content := strings.TrimSpace(in.Text)
-	//Checking empty string
-	// if content == "" {
-	// 	//log.Fatal("Empty String sent by Client!!!")
-	// 	return nil, errors.New("Empty String sent by Client!!!")
+	// Checking empty string
+	if content == "" {
+		log.Fatal("Empty String sent by Client!!!")
 
-	// }
+	}
 
 	//Removing all spcial charecters and white spaces from string
 	reg, _ := regexp.Compile(`[^\w]`)
@@ -33,8 +32,7 @@ func (s *WcServer) WordCount(ctx context.Context, in *pb.TextRequest) (*pb.WcRes
 	//making slice of a content
 	strSlice := strings.Split(content, " ")
 
-	//	fmt.Println("slice", strSlice)
-
+	
 	//making dictionarry and store count in it
 	wcMap := make(map[string]int32)
 
@@ -46,12 +44,6 @@ func (s *WcServer) WordCount(ctx context.Context, in *pb.TextRequest) (*pb.WcRes
 		}
 
 	}
-
-	//Check map empty!!!
-	// if len(wcMap) == 0 {
-	// 	//log.Fatal("No valid Word")
-	// 	return nil, errors.New("No valid Word!!!")
-	// }
 
 	//A slice that contains words
 	words := make([]string, 0, len(wcMap))
